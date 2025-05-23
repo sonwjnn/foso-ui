@@ -5,51 +5,108 @@ import { Footer } from "@/components/footer";
 import { PromoBanner } from "@/components/promo-banner";
 import { CategorySidebar } from "@/components/category-sidebar";
 import { ProductCard } from "@/components/product-card";
-import { Button } from "@/components/ui/button";
 import { BreadcrumbHome } from "@/components/breadcrumb";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
-import { FilterButton } from "@/components/filter-button";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useLocalizedProducts } from "@/services/product-localization";
-
-type FilterType = "relevant" | "bestselling" | "newest" | "featured";
+import { ProductSlider } from "@/components/product-slider";
+import { Filters } from "@/components/filters";
+import { useSearchParams } from "next/navigation";
+import { FilterType, SortOrder } from "@/types";
 
 export default function Home() {
+  const searchParams = useSearchParams();
   const nav = useTranslations("navigation");
-  const products_t = useTranslations("products");
   const support_t = useTranslations("support");
   const { products } = useLocalizedProducts();
+
+  const filter = searchParams.get("filter") as FilterType | null;
+  const sort = searchParams.get("sort") as SortOrder | null;
+  const priceRange = searchParams.get("price") || "";
+  const brandParam = searchParams.get("brand") || "";
+  const yearParam = searchParams.get("year") || "";
+  const originParam = searchParams.get("origin") || "";
+  const categoryParam = searchParams.get("category") || "";
+
   const items = [
     { label: nav("home"), href: "/" },
     { label: nav("products"), href: "/products" },
   ];
-  const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
-  const handleFilterClick = (filter: FilterType) => {
-    if (filter === activeFilter) {
-      setActiveFilter(null);
-      return;
+  const sortedProducts = useMemo(() => {
+    let sortedProducts = [...products];
+
+    if (brandParam) {
+      const brands = brandParam.split(",");
+      sortedProducts = sortedProducts.filter((product) =>
+        brands.includes(product.brand)
+      );
     }
 
-    setActiveFilter(filter);
-  };
+    if (categoryParam) {
+      sortedProducts = sortedProducts.filter(
+        (product) => product.category === categoryParam
+      );
+    }
+
+    if (yearParam) {
+      const years = yearParam.split(",").map((year) => parseInt(year, 10));
+      sortedProducts = sortedProducts.filter((product) =>
+        years.includes(product.manufacturingYear)
+      );
+    }
+
+    if (originParam) {
+      const origins = originParam.split(",");
+      sortedProducts = sortedProducts.filter((product) =>
+        origins.includes(product.origin)
+      );
+    }
+
+    if (filter === "relevant") {
+      sortedProducts.sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+    } else if (filter === "bestselling") {
+      sortedProducts.sort((a, b) => b.salesCount - a.salesCount);
+    } else if (filter === "newest") {
+      sortedProducts.sort((a, b) => a.createdAt.localeCompare(b.createdAt));
+    } else if (filter === "featured") {
+      sortedProducts.sort(
+        (a, b) => (a.isFeatured ? 1 : 0) - (b.isFeatured ? 1 : 0)
+      );
+    }
+
+    if (sort === "asc") {
+      sortedProducts.sort((a, b) => a.price - b.price);
+    } else if (sort === "desc") {
+      sortedProducts.sort((a, b) => b.price - a.price);
+    }
+
+    if (priceRange) {
+      const [minStr, maxStr] = priceRange.split("_");
+      const min = parseInt(minStr, 10);
+      const max = maxStr ? parseInt(maxStr, 10) : Infinity;
+
+      sortedProducts = sortedProducts.filter((product) => {
+        return product.price >= min && product.price <= max;
+      });
+    }
+
+    return sortedProducts;
+  }, [
+    products,
+    filter,
+    sort,
+    priceRange,
+    brandParam,
+    yearParam,
+    originParam,
+    categoryParam,
+  ]);
 
   return (
     <div className="flex flex-col min-h-screen bg-[#f4f6f8]">
@@ -63,33 +120,7 @@ export default function Home() {
           <div>
             <PromoBanner />
             <div className="bg-[#025FCA] p-4 lg:p-12 gap-x-5 w-full rounded-b-md">
-              <Carousel
-                opts={{
-                  align: "start",
-                }}
-                className="w-full"
-              >
-                <CarouselContent>
-                  {products.map((product) => (
-                    <CarouselItem
-                      key={product.id}
-                      className="basis-1/2 md:basis-1/3 lg:basis-1/5"
-                    >
-                      <ProductCard
-                        key={product.id}
-                        id={product.id}
-                        name={product.name}
-                        price={product.price}
-                        originalPrice={product.originalPrice}
-                        image={product.image}
-                        discount={product.discount}
-                      />
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="left-0 -translate-x-1/2 disabled:opacity-100" />
-                <CarouselNext className="right-0 translate-x-1/2 disabled:opacity-100" />
-              </Carousel>
+              <ProductSlider products={products} />
             </div>
           </div>
 
@@ -99,58 +130,10 @@ export default function Home() {
             </div>
 
             <div className="md:col-span-3">
-              <div className="flex justify-between md:flex-row flex-col items-center mb-6">
-                <h2 className="text-[#1C252E] my-4 md:my-0 text-xl font-semibold">
-                  {products_t("featured_products")}
-                </h2>
-                <div className="flex flex-wrap items-center gap-x-2">
-                  <div className="text-[#1C252E] text-sm font-semibold px-2">
-                    {products_t("sort_by")}
-                  </div>
-                  <FilterButton
-                    title={products_t("relevant")}
-                    onClick={() => handleFilterClick("relevant")}
-                    isActive={activeFilter === "relevant"}
-                  />
-                  <FilterButton
-                    title={products_t("bestselling")}
-                    onClick={() => handleFilterClick("bestselling")}
-                    isActive={activeFilter === "bestselling"}
-                  />
-                  <FilterButton
-                    title={products_t("newest")}
-                    onClick={() => handleFilterClick("newest")}
-                    isActive={activeFilter === "newest"}
-                  />
-                  <FilterButton
-                    title={products_t("featured")}
-                    onClick={() => handleFilterClick("featured")}
-                    isActive={activeFilter === "featured"}
-                  />
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost">
-                        {products_t("price")}:{" "}
-                        {sortOrder === "asc"
-                          ? products_t("low_to_high")
-                          : products_t("high_to_low")}{" "}
-                        <ChevronDown />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent>
-                      <DropdownMenuItem onClick={() => setSortOrder("asc")}>
-                        {products_t("low_to_high")}
-                      </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => setSortOrder("desc")}>
-                        {products_t("high_to_low")}
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
-              </div>
+              <Filters />
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                {products.map((product) => (
+                {sortedProducts.map((product) => (
                   <ProductCard
                     key={product.id}
                     id={product.id}
@@ -162,6 +145,11 @@ export default function Home() {
                   />
                 ))}
               </div>
+              {sortedProducts.length === 0 && (
+                <div className="flex items-center w-full justify-center min-h-[80vh]">
+                  <p className="text-center">No products found</p>
+                </div>
+              )}
             </div>
           </div>
 

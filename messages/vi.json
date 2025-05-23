@@ -91,6 +91,11 @@
     "description": "Tích điểm ngay trên app {app_name}",
     "point": "*100K = 10 điểm"
   },
+  "origins": {
+    "germany": "Đức",
+    "japan": "Nhật Bản",
+    "china": "Trung Quốc"
+  },
   "product_data": {
     "1": {
       "name": "Lọc nhớt động cơ ô tô GLS46 Toàn Phát 0.3B15-23240-0"

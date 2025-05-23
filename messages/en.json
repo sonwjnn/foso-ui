@@ -106,6 +106,11 @@
     "description": "Earn points right on the {app_name} app",
     "point": "*100K = 10 points"
   },
+  "origins": {
+    "germany": "Germany",
+    "japan": "Japan",
+    "china": "China"
+  },
   "product_data": {
     "1": {
       "name": "GLS46 Car Engine Oil Filter Toan Phat 0.3B15-23240-0"
