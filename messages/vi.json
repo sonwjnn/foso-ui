@@ -1,0 +1,156 @@
+{
+  "navigation": {
+    "home": "Trang chủ",
+    "products": "Sản phẩm"
+  },
+  "products": {
+    "buy_now": "Mua ngay",
+    "shocking_price": "Giá cực sốc",
+    "featured_products": "Sản phẩm nổi bật",
+    "sort_by": "Sắp xếp theo",
+    "relevant": "Liên quan",
+    "bestselling": "Bán chạy",
+    "newest": "Mới nhất",
+    "featured": "Nổi bật",
+    "price": "Giá",
+    "low_to_high": "Thấp → Cao",
+    "high_to_low": "Cao → Thấp"
+  },
+  "support": {
+    "free_shipping": {
+      "title": "Miễn phí vận chuyển",
+      "description": "Với hoá đơn từ 1 triệu"
+    },
+    "customer_support": {
+      "title": "Hỗ trợ 24/7",
+      "description": "Đội ngũ CSKH tận tình sẵn sàng lắng nghe và phục vụ tận tâm"
+    },
+    "fast_delivery": {
+      "title": "Giao hàng nhanh 2h",
+      "description": "Trong vòng bán kính 10km nội thành TP HCM"
+    },
+    "return_policy": {
+      "title": "30 ngày đổi trả",
+      "description": "Hoàn tiền 100% nếu phát sinh lỗi từ NSX hoặc đơn vị vận chuyển"
+    }
+  },
+  "category_sidebar": {
+    "filter": "Bộ Lọc",
+    "product_categories": "Danh mục sản phẩm",
+    "price_range": "Khoảng giá",
+    "brands": "Thương hiệu",
+    "manufacture_year": "Năm sản xuất",
+    "origin": "Xuất xứ",
+    "price_ranges": {
+      "under_100k": "Dưới 100.000 đ",
+      "100k_300k": "100.000 đ - 300.000 đ",
+      "300k_500k": "300.000 đ - 500.000 đ",
+      "over_500k": "Trên 500.000 đ"
+    },
+    "filter_categories": {
+      "air_filter": "Lọc gió Động cơ - Air Filter",
+      "fuel_filter": "Lọc Nhiên Liệu - Fuel Filter",
+      "oil_filter": "Bộ lọc dầu",
+      "uncategorized": "Chưa phân loại",
+      "others": "Khác"
+    }
+  },
+  "navigation_category": {
+    "product_categories": "Danh mục sản phẩm",
+    "bestselling_products": "Sản phẩm bán chạy",
+    "view_all": "Xem tất cả",
+    "categories": {
+      "oil_filter": "Bộ Lọc Dầu",
+      "air_filter": "Bộ Lọc Không Khí",
+      "fuel_filter": "Bộ Lọc Nhiên Liệu",
+      "cabin_filter": "Bộ Lọc Trong Cabin"
+    },
+    "subcategories": {
+      "air_filter": "Bộ lọc gió"
+    }
+  },
+  "header": {
+    "promo_banner": "Nhập mã {code} giảm ngay 10% cho lần đầu mua hàng.",
+    "promo_code": "NEWBIE",
+    "hotline": "Hotline:",
+    "download_app": "Tải ứng dụng",
+    "search_placeholder": "Tìm kiếm sản phẩm...",
+    "account": "Tài khoản",
+    "cart": "Giỏ hàng",
+    "about_us": "Về chúng tôi",
+    "blog": "Bài viết",
+    "catalog": "Catalog",
+    "contact": "Liên hệ",
+    "support_24_7": "Hỗ trợ 24/7",
+    "free_shipping": "Miễn phí vận chuyển",
+    "fast_delivery": "Giao hàng nhanh 2h",
+    "return_policy": "30 ngày đổi trả"
+  },
+  "promo_banner": {
+    "title": "Mới Cực Hot",
+    "description": "Tích điểm ngay trên app {app_name}",
+    "point": "*100K = 10 điểm"
+  },
+  "product_data": {
+    "1": {
+      "name": "Lọc nhớt động cơ ô tô GLS46 Toàn Phát 0.3B15-23240-0"
+    },
+    "2": {
+      "name": "Lọc gió động cơ ô tô Hyundai 28113-2W300"
+    },
+    "3": {
+      "name": "Lọc dầu động cơ Toyota Innova 2022 90915-YZZJ1"
+    },
+    "4": {
+      "name": "Lọc nhớt Honda 15400-RTA-003 chính hãng"
+    },
+    "5": {
+      "name": "Lọc gió xe Toyota Camry 2.5 17801-31120 chính hãng"
+    },
+    "6": {
+      "name": "Lọc nhớt động cơ ô tô GLS46 Toàn Phát 0.3B15-23240-0"
+    },
+    "7": {
+      "name": "Lọc gió động cơ ô tô Hyundai 28113-2W300"
+    },
+    "8": {
+      "name": "Lọc dầu động cơ Toyota Innova 2022 90915-YZZJ1"
+    },
+    "9": {
+      "name": "Lọc nhớt Honda 15400-RTA-003 chính hãng"
+    },
+    "10": {
+      "name": "Lọc gió xe Toyota Camry 2.5 17801-31120 chính hãng"
+    },
+    "11": {
+      "name": "Lọc nhớt động cơ ô tô GLS46 Toàn Phát 0.3B15-23240-0"
+    },
+    "12": {
+      "name": "Lọc gió động cơ ô tô Hyundai 28113-2W300"
+    },
+    "13": {
+      "name": "Lọc dầu động cơ Toyota Innova 2022 90915-YZZJ1"
+    },
+    "14": {
+      "name": "Lọc nhớt Honda 15400-RTA-003 chính hãng"
+    },
+    "15": {
+      "name": "Lọc gió xe Toyota Camry 2.5 17801-31120 chính hãng"
+    },
+    "16": {
+      "name": "Lọc nhớt động cơ ô tô GLS46 Toàn Phát 0.3B15-23240-0"
+    },
+    "17": {
+      "name": "Lọc gió động cơ ô tô Hyundai 28113-2W300"
+    },
+    "18": {
+      "name": "Lọc dầu động cơ Toyota Innova 2022 90915-YZZJ1"
+    },
+    "19": {
+      "name": "Lọc nhớt Honda 15400-RTA-003 chính hãng"
+    },
+    "20": {
+      "name": "Lọc gió xe Toyota Camry 2.5 17801-31120 chính hãng"
+    }
+  }
+}

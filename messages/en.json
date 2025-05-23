@@ -1,0 +1,171 @@
+{
+  "navigation": {
+    "home": "Home",
+    "products": "Products"
+  },
+  "products": {
+    "buy_now": "Buy now",
+    "shocking_price": "Shocking price",
+    "featured_products": "Featured Products",
+    "sort_by": "Sort by",
+    "relevant": "Relevant",
+    "bestselling": "Best Selling",
+    "newest": "Newest",
+    "featured": "Featured",
+    "price": "Price",
+    "low_to_high": "Low to High",
+    "high_to_low": "High to Low",
+    "no_products_found": "No products found",
+    "products_found": "products found",
+    "clear_filters": "Clear Filters"
+  },
+  "support": {
+    "free_shipping": {
+      "title": "Free Shipping",
+      "description": "For orders from 1 million VND"
+    },
+    "customer_support": {
+      "title": "24/7 Support",
+      "description": "Our dedicated team is ready to listen and serve"
+    },
+    "fast_delivery": {
+      "title": "Fast 2h Delivery",
+      "description": "Within 10km radius in Ho Chi Minh City"
+    },
+    "return_policy": {
+      "title": "30-day Returns",
+      "description": "100% refund for manufacturer or shipping errors"
+    }
+  },
+  "category_sidebar": {
+    "filter": "Filter",
+    "product_categories": "Product Categories",
+    "price_range": "Price Range",
+    "brands": "Brands",
+    "manufacture_year": "Manufacture Year",
+    "origin": "Origin",
+    "min": "Min",
+    "max": "Max",
+    "apply": "Apply",
+    "clear": "Clear",
+    "filter_categories": {
+      "air_filter": "Air Filter",
+      "fuel_filter": "Fuel Filter",
+      "oil_filter": "Oil Filter",
+      "cabin_filter": "Cabin Filter",
+      "uncategorized": "Uncategorized",
+      "others": "Others"
+    },
+    "price_ranges": {
+      "under_100k": "Under 100,000₫",
+      "100k_300k": "100,000₫ - 300,000₫",
+      "300k_500k": "300,000₫ - 500,000₫",
+      "over_500k": "Over 500,000₫"
+    },
+    "categories": "Categories",
+    "categories_filter": {
+      "oil-filter": "Oil Filter",
+      "air-filter": "Air Filter",
+      "fuel-filter": "Fuel Filter",
+      "cabin-filter": "Cabin Filter"
+    }
+  },
+  "navigation_category": {
+    "product_categories": "Product Categories",
+    "bestselling_products": "Bestselling Products",
+    "view_all": "View All",
+    "categories": {
+      "oil_filter": "Oil Filter",
+      "air_filter": "Air Filter",
+      "fuel_filter": "Fuel Filter",
+      "cabin_filter": "Cabin Filter"
+    },
+    "subcategories": {
+      "air_filter": "Air Filter"
+    }
+  },
+  "header": {
+    "promo_banner": "Use code {code} for 10% off your first purchase.",
+    "promo_code": "NEWBIE",
+    "hotline": "Hotline:",
+    "download_app": "Download app",
+    "search_placeholder": "Search for products...",
+    "account": "Account",
+    "cart": "Cart",
+    "about_us": "About Us",
+    "blog": "Blog",
+    "catalog": "Catalog",
+    "contact": "Contact",
+    "support_24_7": "24/7 Support",
+    "free_shipping": "Free Shipping",
+    "fast_delivery": "Fast 2h Delivery",
+    "return_policy": "30-day Returns"
+  },
+  "promo_banner": {
+    "title": "NEW HOT",
+    "description": "Earn points right on the {app_name} app",
+    "point": "*100K = 10 points"
+  },
+  "product_data": {
+    "1": {
+      "name": "GLS46 Car Engine Oil Filter Toan Phat 0.3B15-23240-0"
+    },
+    "2": {
+      "name": "Hyundai Car Engine Air Filter 28113-2W300"
+    },
+    "3": {
+      "name": "Toyota Innova 2022 Engine Oil Filter 90915-YZZJ1"
+    },
+    "4": {
+      "name": "Genuine Honda Oil Filter 15400-RTA-003"
+    },
+    "5": {
+      "name": "Genuine Toyota Camry 2.5 Air Filter 17801-31120"
+    },
+    "6": {
+      "name": "GLS46 Car Engine Oil Filter Toan Phat 0.3B15-23240-0"
+    },
+    "7": {
+      "name": "Hyundai Car Engine Air Filter 28113-2W300"
+    },
+    "8": {
+      "name": "Toyota Innova 2022 Engine Oil Filter 90915-YZZJ1"
+    },
+    "9": {
+      "name": "Genuine Honda Oil Filter 15400-RTA-003"
+    },
+    "10": {
+      "name": "Genuine Toyota Camry 2.5 Air Filter 17801-31120"
+    },
+    "11": {
+      "name": "GLS46 Car Engine Oil Filter Toan Phat 0.3B15-23240-0"
+    },
+    "12": {
+      "name": "Hyundai Car Engine Air Filter 28113-2W300"
+    },
+    "13": {
+      "name": "Toyota Innova 2022 Engine Oil Filter 90915-YZZJ1"
+    },
+    "14": {
+      "name": "Genuine Honda Oil Filter 15400-RTA-003"
+    },
+    "15": {
+      "name": "Genuine Toyota Camry 2.5 Air Filter 17801-31120"
+    },
+    "16": {
+      "name": "GLS46 Car Engine Oil Filter Toan Phat 0.3B15-23240-0"
+    },
+    "17": {
+      "name": "Hyundai Car Engine Air Filter 28113-2W300"
+    },
+    "18": {
+      "name": "Toyota Innova 2022 Engine Oil Filter 90915-YZZJ1"
+    },
+    "19": {
+      "name": "Genuine Honda Oil Filter 15400-RTA-003"
+    },
+    "20": {
+      "name": "Genuine Toyota Camry 2.5 Air Filter 17801-31120"
+    }
+  }
+}

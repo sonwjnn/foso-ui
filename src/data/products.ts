@@ -6,6 +6,7 @@ export interface Product {
   image: string;
   discount?: number;
   category: string;
+  createdAt: string;
 }
 
 export const products: Product[] = [
@@ -17,6 +18,7 @@ export const products: Product[] = [
     image: "/product_1.png",
     discount: 10,
     category: "oil-filter",
+    createdAt: "2014-12-26 20:37:09",
   },
   {
     id: "2",
@@ -26,6 +28,7 @@ export const products: Product[] = [
     image: "/product_2.png",
     discount: 12,
     category: "air-filter",
+    createdAt: "2004-09-05 12:04:11",
   },
   {
     id: "3",
@@ -35,6 +38,7 @@ export const products: Product[] = [
     image: "/product_3.png",
     discount: 10,
     category: "oil-filter",
+    createdAt: "1940-05-14 06:29:31",
   },
   {
     id: "4",
@@ -44,6 +48,7 @@ export const products: Product[] = [
     image: "/product_4.png",
     discount: 16,
     category: "oil-filter",
+    createdAt: "2045-12-07 03:39:57",
   },
   {
     id: "5",
@@ -53,6 +58,7 @@ export const products: Product[] = [
     image: "/product_5.png",
     discount: 16,
     category: "air-filter",
+    createdAt: "1922-10-06 22:31:43",
   },
   {
     id: "6",
@@ -62,6 +68,7 @@ export const products: Product[] = [
     image: "/product_1.png",
     discount: 10,
     category: "oil-filter",
+    createdAt: "1956-02-23 05:04:15",
   },
   {
     id: "7",
@@ -71,6 +78,7 @@ export const products: Product[] = [
     image: "/product_2.png",
     discount: 12,
     category: "air-filter",
+    createdAt: "2050-12-28 07:34:49",
   },
   {
     id: "8",
@@ -80,6 +88,7 @@ export const products: Product[] = [
     image: "/product_3.png",
     discount: 10,
     category: "oil-filter",
+    createdAt: "2099-12-25 11:08:38",
   },
   {
     id: "9",
@@ -89,6 +98,7 @@ export const products: Product[] = [
     image: "/product_4.png",
     discount: 16,
     category: "oil-filter",
+    createdAt: "1929-07-22 06:01:24",
   },
   {
     id: "10",
@@ -98,6 +108,7 @@ export const products: Product[] = [
     image: "/product_5.png",
     discount: 16,
     category: "air-filter",
+    createdAt: "1974-10-09 14:02:51",
   },
   {
     id: "11",
@@ -107,6 +118,7 @@ export const products: Product[] = [
     image: "/product_1.png",
     discount: 10,
     category: "oil-filter",
+    createdAt: "2019-08-13 17:28:18",
   },
   {
     id: "12",
@@ -116,6 +128,7 @@ export const products: Product[] = [
     image: "/product_2.png",
     discount: 12,
     category: "air-filter",
+    createdAt: "1961-03-06 11:38:58",
   },
   {
     id: "13",
@@ -125,6 +138,7 @@ export const products: Product[] = [
     image: "/product_3.png",
     discount: 10,
     category: "oil-filter",
+    createdAt: "2006-07-11 23:10:32",
   },
   {
     id: "14",
@@ -134,6 +148,7 @@ export const products: Product[] = [
     image: "/product_4.png",
     discount: 16,
     category: "oil-filter",
+    createdAt: "2011-12-15 21:35:26",
   },
   {
     id: "15",
@@ -143,6 +158,7 @@ export const products: Product[] = [
     image: "/product_5.png",
     discount: 16,
     category: "air-filter",
+    createdAt: "2013-07-13 11:10:11",
   },
   {
     id: "16",
@@ -152,6 +168,7 @@ export const products: Product[] = [
     image: "/product_1.png",
     discount: 10,
     category: "oil-filter",
+    createdAt: "2021-10-15 10:14:01",
   },
   {
     id: "17",
@@ -161,6 +178,7 @@ export const products: Product[] = [
     image: "/product_2.png",
     discount: 12,
     category: "air-filter",
+    createdAt: "1963-02-24 05:52:27",
   },
   {
     id: "18",
@@ -170,6 +188,7 @@ export const products: Product[] = [
     image: "/product_3.png",
     discount: 10,
     category: "oil-filter",
+    createdAt: "2038-07-06 10:22:01",
   },
   {
     id: "19",
@@ -179,6 +198,7 @@ export const products: Product[] = [
     image: "/product_4.png",
     discount: 16,
     category: "oil-filter",
+    createdAt: "1917-02-24 16:01:021",
   },
   {
     id: "20",
@@ -188,5 +208,6 @@ export const products: Product[] = [
     image: "/product_5.png",
     discount: 16,
     category: "air-filter",
+    createdAt: "1939-06-16 22:30:12",
   },
 ];

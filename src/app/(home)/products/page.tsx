@@ -5,9 +5,6 @@ import { Footer } from "@/components/footer";
 import { PromoBanner } from "@/components/promo-banner";
 import { CategorySidebar } from "@/components/category-sidebar";
 import { ProductCard } from "@/components/product-card";
-import { Pagination } from "@/components/pagination";
-import { products } from "@/data/products";
-import { categories } from "@/data/categories";
 import { Button } from "@/components/ui/button";
 import { BreadcrumbHome } from "@/components/breadcrumb";
 import {
@@ -21,28 +18,28 @@ import {
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
 import { FilterButton } from "@/components/filter-button";
 import { useState } from "react";
 import Image from "next/image";
-import { supportData } from "@/data/support";
+import { useTranslations } from "next-intl";
+import { useLocalizedProducts } from "@/services/product-localization";
 
-const items = [
-  { label: "Trang chủ", href: "/" },
-  { label: "Sản phẩm", href: "/products" },
-];
-
-type FilterType = "liên quan" | "bán chạy" | "mới nhất" | "nổi bật";
+type FilterType = "relevant" | "bestselling" | "newest" | "featured";
 
 export default function Home() {
+  const nav = useTranslations("navigation");
+  const products_t = useTranslations("products");
+  const support_t = useTranslations("support");
+  const { products } = useLocalizedProducts();
+  const items = [
+    { label: nav("home"), href: "/" },
+    { label: nav("products"), href: "/products" },
+  ];
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
-
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
   const handleFilterClick = (filter: FilterType) => {
@@ -65,7 +62,7 @@ export default function Home() {
           </div>
           <div>
             <PromoBanner />
-            <div className="bg-[#025FCA] p-12 gap-x-5 w-full rounded-b-md">
+            <div className="bg-[#025FCA] p-4 lg:p-12 gap-x-5 w-full rounded-b-md">
               <Carousel
                 opts={{
                   align: "start",
@@ -96,53 +93,56 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="md:col-span-1">
-              <CategorySidebar categories={categories} />
+              <CategorySidebar />
             </div>
 
             <div className="md:col-span-3">
               <div className="flex justify-between md:flex-row flex-col items-center mb-6">
                 <h2 className="text-[#1C252E] my-4 md:my-0 text-xl font-semibold">
-                  Sản phẩm nổi bật
+                  {products_t("featured_products")}
                 </h2>
                 <div className="flex flex-wrap items-center gap-x-2">
                   <div className="text-[#1C252E] text-sm font-semibold px-2">
-                    Sắp xếp theo
+                    {products_t("sort_by")}
                   </div>
                   <FilterButton
-                    title="Liên quan"
-                    onClick={() => handleFilterClick("liên quan")}
-                    isActive={activeFilter === "liên quan"}
+                    title={products_t("relevant")}
+                    onClick={() => handleFilterClick("relevant")}
+                    isActive={activeFilter === "relevant"}
                   />
                   <FilterButton
-                    title="Bán chạy"
-                    onClick={() => handleFilterClick("bán chạy")}
-                    isActive={activeFilter === "bán chạy"}
+                    title={products_t("bestselling")}
+                    onClick={() => handleFilterClick("bestselling")}
+                    isActive={activeFilter === "bestselling"}
                   />
                   <FilterButton
-                    title="Mới nhất"
-                    onClick={() => handleFilterClick("mới nhất")}
-                    isActive={activeFilter === "mới nhất"}
+                    title={products_t("newest")}
+                    onClick={() => handleFilterClick("newest")}
+                    isActive={activeFilter === "newest"}
                   />
                   <FilterButton
-                    title="Nổi bật"
-                    onClick={() => handleFilterClick("nổi bật")}
-                    isActive={activeFilter === "nổi bật"}
+                    title={products_t("featured")}
+                    onClick={() => handleFilterClick("featured")}
+                    isActive={activeFilter === "featured"}
                   />
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost">
-                        Giá: {sortOrder === "asc" ? "Thấp → Cao" : "Cao → Thấp"}{" "}
+                        {products_t("price")}:{" "}
+                        {sortOrder === "asc"
+                          ? products_t("low_to_high")
+                          : products_t("high_to_low")}{" "}
                         <ChevronDown />
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
                       <DropdownMenuItem onClick={() => setSortOrder("asc")}>
-                        Thấp → Cao
+                        {products_t("low_to_high")}
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => setSortOrder("desc")}>
-                        Cao → Thấp
+                        {products_t("high_to_low")}
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
@@ -166,28 +166,77 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-8 my-16 mb-8">
-            {supportData.map((support) => (
-              <div
-                key={support.title}
-                className="flex items-center gap-2 bg-white px-[11px] py-[26px] rounded-md shadow-md"
-              >
-                <Image
-                  src={support.icon}
-                  alt={support.title}
-                  width={48}
-                  height={48}
-                  className="object-cover"
-                />
-                <div>
-                  <p className="text-[#1C252E] text-base font-bold">
-                    {support.title}
-                  </p>
-                  <p className="text-sm text-[#637381] font-medium">
-                    {support.description}
-                  </p>
-                </div>
+            <div className="flex items-center gap-2 bg-white px-[11px] py-[26px] rounded-md shadow-md">
+              <Image
+                src="/freeship_footer.png"
+                alt={support_t("free_shipping.title")}
+                width={48}
+                height={48}
+                className="object-cover"
+              />
+              <div>
+                <p className="text-[#1C252E] text-base font-bold">
+                  {support_t("free_shipping.title")}
+                </p>
+                <p className="text-sm text-[#637381] font-medium">
+                  {support_t("free_shipping.description")}
+                </p>
               </div>
-            ))}
+            </div>
+
+            <div className="flex items-center gap-2 bg-white px-[11px] py-[26px] rounded-md shadow-md">
+              <Image
+                src="/support.png"
+                alt={support_t("customer_support.title")}
+                width={48}
+                height={48}
+                className="object-cover"
+              />
+              <div>
+                <p className="text-[#1C252E] text-base font-bold">
+                  {support_t("customer_support.title")}
+                </p>
+                <p className="text-sm text-[#637381] font-medium">
+                  {support_t("customer_support.description")}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 bg-white px-[11px] py-[26px] rounded-md shadow-md">
+              <Image
+                src="/truck_footer.png"
+                alt={support_t("fast_delivery.title")}
+                width={48}
+                height={48}
+                className="object-cover"
+              />
+              <div>
+                <p className="text-[#1C252E] text-base font-bold">
+                  {support_t("fast_delivery.title")}
+                </p>
+                <p className="text-sm text-[#637381] font-medium">
+                  {support_t("fast_delivery.description")}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 bg-white px-[11px] py-[26px] rounded-md shadow-md">
+              <Image
+                src="/box_footer.png"
+                alt={support_t("return_policy.title")}
+                width={48}
+                height={48}
+                className="object-cover"
+              />
+              <div>
+                <p className="text-[#1C252E] text-base font-bold">
+                  {support_t("return_policy.title")}
+                </p>
+                <p className="text-sm text-[#637381] font-medium">
+                  {support_t("return_policy.description")}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </main>

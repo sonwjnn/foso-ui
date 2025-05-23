@@ -2,6 +2,9 @@ import { Checkbox } from "./ui/checkbox";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { useLocalizedProducts } from "@/services/product-localization";
+import { useSearchParams } from "next/navigation";
 
 interface CategorySidebarProps {
   categories: {
@@ -43,18 +46,26 @@ function FilterSection({
   );
 }
 
-function PriceButton({ price }: { price: string }) {
+function PriceButton({
+  price,
+  onClick,
+}: {
+  price: string;
+  onClick?: () => void;
+}) {
   return (
-    <button className="w-full h-10 border border-zinc-150 rounded text-center text-sm hover:border-[#0373F3] hover:text-[#0373F3]">
+    <button
+      onClick={onClick}
+      className="w-full h-10 border border-zinc-150 rounded text-center text-sm hover:border-[#0373F3] hover:text-[#0373F3]"
+    >
       {price}
     </button>
   );
 }
 
-export function CategorySidebar({
-  categories,
-  onCategoryChange,
-}: CategorySidebarProps) {
+export function CategorySidebar() {
+  const t = useTranslations("category_sidebar");
+
   return (
     <aside className="w-full bg-white rounded-md py-3">
       <div className="flex items-center gap-3 h-14 px-3">
@@ -65,27 +76,27 @@ export function CategorySidebar({
           height={32}
           className="object-cover"
         />
-        <h2 className="text-[#0373F3] text-2xl font-bold">Bộ Lọc</h2>
+        <h2 className="text-[#0373F3] text-2xl font-bold">{t("filter")}</h2>
       </div>
 
-      <FilterSection title="Danh mục sản phẩm">
+      <FilterSection title={t("product_categories")}>
         <div className="flex items-center space-x-2">
-          <Checkbox id="category-1" defaultChecked />
+          <Checkbox id="category-1" defaultChecked={false} />
           <label
             htmlFor="category-1"
             className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex gap-x-1 w-full text-[#1C252E]"
           >
-            <span>Lọc gió Động cơ - Air Filter</span>
+            <span>{t("filter_categories.air_filter")}</span>
             <span className="text-gray-500">(24)</span>
           </label>
         </div>
         <div className="flex items-center space-x-2">
-          <Checkbox id="category-2" defaultChecked />
+          <Checkbox id="category-2" defaultChecked={false} />
           <label
             htmlFor="category-2"
             className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex gap-x-1 w-full text-[#1C252E]"
           >
-            <span>Lọc Nhiên Liệu - Fuel Filter</span>
+            <span>{t("filter_categories.fuel_filter")}</span>
             <span className="text-gray-500">(24)</span>
           </label>
         </div>
@@ -95,7 +106,7 @@ export function CategorySidebar({
             htmlFor="category-3"
             className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex gap-x-1 w-full text-[#1C252E]"
           >
-            <span>Bộ lọc dầu</span>
+            <span>{t("filter_categories.oil_filter")}</span>
             <span className="text-gray-500">(24)</span>
           </label>
         </div>
@@ -105,7 +116,7 @@ export function CategorySidebar({
             htmlFor="category-4"
             className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex gap-x-1 w-full text-[#1C252E]"
           >
-            <span>Chưa phân loại</span>
+            <span>{t("filter_categories.uncategorized")}</span>
             <span className="text-gray-500">(24)</span>
           </label>
         </div>
@@ -115,22 +126,22 @@ export function CategorySidebar({
             htmlFor="category-5"
             className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex gap-x-1 w-full text-[#1C252E]"
           >
-            <span>Khác</span>
+            <span>{t("filter_categories.others")}</span>
             <span className="text-gray-500">(24)</span>
           </label>
         </div>
       </FilterSection>
 
-      <FilterSection title="Khoảng giá">
+      <FilterSection title={t("price_range")}>
         <div className="flex flex-col space-y-2">
-          <PriceButton price="Dưới 100.000 đ" />
-          <PriceButton price="100.000 đ - 300.000 đ" />
-          <PriceButton price="300.000 đ - 500.000 đ" />
-          <PriceButton price="Trên 500.000 đ" />
+          <PriceButton price={t("price_ranges.under_100k")} />
+          <PriceButton price={t("price_ranges.100k_300k")} />
+          <PriceButton price={t("price_ranges.300k_500k")} />
+          <PriceButton price={t("price_ranges.over_500k")} />
         </div>
       </FilterSection>
 
-      <FilterSection title="Thương hiệu">
+      <FilterSection title={t("brands")}>
         <div className="flex items-center space-x-2">
           <Checkbox id="brand-1" />
           <label
@@ -163,7 +174,7 @@ export function CategorySidebar({
         </div>
       </FilterSection>
 
-      <FilterSection title="Năm sản xuất">
+      <FilterSection title={t("manufacture_year")}>
         <div className="flex items-center space-x-2">
           <Checkbox id="year-1" />
           <label
@@ -206,7 +217,7 @@ export function CategorySidebar({
         </div>
       </FilterSection>
 
-      <FilterSection title="Xuất xứ">
+      <FilterSection title={t("origin")}>
         <div className="flex items-center space-x-2">
           <Checkbox id="origin-1" />
           <label

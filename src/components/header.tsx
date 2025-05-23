@@ -13,8 +13,29 @@ import { Logo } from "./logo";
 import Image from "next/image";
 import { CartButton } from "./cart-button";
 import { NavigationCategory } from "./navigation-category";
+import LanguageSwitcher from "./language-switcher";
+import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 
 export function Header() {
+  const t = useTranslations("header");
+  const locale = useLocale();
+
+  const promoBannerText = {
+    en: (
+      <>
+        Use code <b className="text-[#FACA4A]">{t("promo_code")}</b> for 10% off
+        your first purchase.
+      </>
+    ),
+    vi: (
+      <>
+        Nhập mã <b className="text-[#FACA4A]">{t("promo_code")}</b> giảm ngay
+        10% cho lần đầu mua hàng.
+      </>
+    ),
+  };
+
   return (
     <header className="bg-white sticky top-0 z-50">
       <div
@@ -34,8 +55,7 @@ export function Header() {
               sizes="100vw"
             />
             <p className="text-white">
-              Nhập mã <b className="text-[#FACA4A]">NEWBIE</b> giảm ngay 10% cho
-              lần đầu mua hàng.
+              {promoBannerText[locale as keyof typeof promoBannerText]}
             </p>
           </div>
           <div className="flex items-center gap-2 text-white text-sm  font-normal ">
@@ -48,7 +68,7 @@ export function Header() {
                 height={16}
               />
               <p>
-                Hotline: <b className="text-[#FACA4A]">0283 760 7607</b>
+                {t("hotline")} <b className="text-[#FACA4A]">0283 760 7607</b>
               </p>
             </div>
             <div className="flex items-center gap-2">
@@ -59,7 +79,7 @@ export function Header() {
                 width={16}
                 height={16}
               />
-              <p>Tải ứng dụng</p>
+              <p>{t("download_app")}</p>
             </div>
           </div>
         </div>
@@ -72,7 +92,7 @@ export function Header() {
             <div className="relative w-full">
               <Input
                 type="search"
-                placeholder="Tìm kiếm sản phẩm..."
+                placeholder={t("search_placeholder")}
                 className="w-full h-16 pl-5 pr-2 py-2 text-black placeholder:text-[#919EAB] rounded-full"
               />
               <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center">
@@ -101,23 +121,13 @@ export function Header() {
           </div>
 
           <div className="flex items-center gap-x-8">
+            <LanguageSwitcher />
+            <CartButton />
             <Button
               variant="ghost"
               size="icon"
-              className="hidden md:flex w-fit"
+              className="flex w-fit hover:bg-transparent"
             >
-              <Image
-                src="/vietnam.png"
-                alt="vietnam"
-                className="size-[36px] object-cover"
-                width={0}
-                height={0}
-                sizes="100vw"
-              />
-              VI
-            </Button>
-            <CartButton />
-            <Button variant="ghost" size="icon" className="flex w-fit">
               <Image
                 src="/user.png"
                 alt="user"
@@ -126,7 +136,7 @@ export function Header() {
                 height={0}
                 sizes="100vw"
               />
-              <p className="hidden md:block">Tài khoản</p>
+              <p className="hidden md:block">{t("account")}</p>
             </Button>
           </div>
         </div>
@@ -134,10 +144,10 @@ export function Header() {
         <nav className="hidden md:flex mt-4 h-[50px] justify-between items-center">
           <div className="text-base font-medium text-black flex items-center gap-x-2">
             <NavigationCategory />
-            <Button variant="ghost">Về chúng tôi</Button>
-            <Button variant="ghost">Bài viết</Button>
-            <Button variant="ghost">Catalog</Button>
-            <Button variant="ghost">Liên hệ</Button>
+            <Button variant="ghost">{t("about_us")}</Button>
+            <Button variant="ghost">{t("blog")}</Button>
+            <Button variant="ghost">{t("catalog")}</Button>
+            <Button variant="ghost">{t("contact")}</Button>
           </div>
           <div className="text-base font-medium text-black">
             <Button variant="ghost">
@@ -149,7 +159,7 @@ export function Header() {
                 className="size-5 object-cover"
                 sizes="100vw"
               />
-              Hỗ trợ 24/7
+              {t("support_24_7")}
             </Button>
             <Button variant="ghost">
               <Image
@@ -160,7 +170,7 @@ export function Header() {
                 className="size-5 object-cover"
                 sizes="100vw"
               />
-              Miễn phí vận chuyển
+              {t("free_shipping")}
             </Button>
             <Button variant="ghost">
               <Image
@@ -171,7 +181,7 @@ export function Header() {
                 className="size-5 object-cover"
                 sizes="100vw"
               />
-              Giao hàng nhanh 2h
+              {t("fast_delivery")}
             </Button>
 
             <Button variant="ghost">
@@ -183,7 +193,7 @@ export function Header() {
                 className="size-5 object-cover"
                 sizes="100vw"
               />
-              30 ngày đổi trả
+              {t("return_policy")}
             </Button>
           </div>
         </nav>
@@ -192,7 +202,7 @@ export function Header() {
           <div className="relative w-full">
             <Input
               type="search"
-              placeholder="Tìm kiếm sản phẩm..."
+              placeholder={t("search_placeholder")}
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full"
             />
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />

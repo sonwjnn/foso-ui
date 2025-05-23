@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 import { PlaceholderImage } from "./placeholder-image";
 import Image from "next/image";
 import { ProductBadge } from "./product-badge";
+import { useTranslations } from "next-intl";
 
 interface ProductCardProps {
   id: string;
@@ -23,6 +24,7 @@ export function ProductCard({
   discount,
   showButton = true,
 }: ProductCardProps) {
+  const t = useTranslations("products");
   return (
     <div className="bg-white rounded-md overflow-hidden hover:shadow-md transition-shadow relative">
       <div className="aspect-square p-1.5">
@@ -59,7 +61,7 @@ export function ProductCard({
         </div>
         {showButton && (
           <Button className="w-full bg-[#E6F1FF] hover:bg-[#CDE4FE] text-[#025FCA] text-sm rounded-md">
-            Mua ngay
+            {t("buy_now")}
           </Button>
         )}
       </div>

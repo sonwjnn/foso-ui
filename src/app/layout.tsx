@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Epilogue } from "next/font/google";
 import "./globals.css";
+import { getLocale, getMessages } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
 
 const epilogue = Epilogue({
   variable: "--font-epilogue",
@@ -12,15 +14,23 @@ export const metadata: Metadata = {
   description: "Foso",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${epilogue.className} font-epilogue antialiased`}>
-        {children}
+        <NextIntlClientProvider
+          locale={locale}
+          messages={messages}
+          timeZone="Europe/Vienna"
+        >
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );
