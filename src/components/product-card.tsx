@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { PlaceholderImage } from "./placeholder-image";
 import Image from "next/image";
 import { ProductBadge } from "./product-badge";
 import { useTranslations } from "next-intl";

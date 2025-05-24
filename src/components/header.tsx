@@ -16,6 +16,7 @@ import { NavigationCategory } from "./navigation-category";
 import LanguageSwitcher from "./language-switcher";
 import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
+import MobileNav from "./mobile-nav";
 
 export function Header() {
   const t = useTranslations("header");
@@ -86,7 +87,10 @@ export function Header() {
       </div>
       <div className="container mx-auto p-4">
         <div className="flex items-center justify-between">
-          <Logo />
+          <div className="flex items-center gap-3">
+            <MobileNav />
+            <Logo />
+          </div>
 
           <div className="hidden lg:flex items-center gap-6 flex-1 max-w-[739px] mx-4">
             <div className="relative w-full">
@@ -149,7 +153,7 @@ export function Header() {
             <Button variant="ghost">{t("catalog")}</Button>
             <Button variant="ghost">{t("contact")}</Button>
           </div>
-          <div className="text-base font-medium text-black">
+          <div className="text-base font-medium text-black hidden xl:block">
             <Button variant="ghost">
               <Image
                 src="/clock.png"

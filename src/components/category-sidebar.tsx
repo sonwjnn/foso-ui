@@ -1,3 +1,5 @@
+"use client";
+
 import { Checkbox } from "./ui/checkbox";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -245,7 +247,7 @@ export function CategorySidebar() {
 
       <FilterSection title={t("brands")}>
         {brands.map((brand) => (
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2" key={brand}>
             <Checkbox
               id={`brand-${brand}`}
               checked={brandParam === brand}

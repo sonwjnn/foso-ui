@@ -1,3 +1,5 @@
+"use client";
+
 import { useLocale } from "next-intl";
 import { setUserLocale } from "@/services/locale";
 import Image from "next/image";
@@ -22,7 +24,7 @@ export default function LanguageSwitcher() {
         <Button
           variant="ghost"
           size="icon"
-          className="flex w-fit hover:bg-transparent"
+          className="flex w-fit hover:bg-transparent focus-visible:border-0 focus-visible:ring-0"
         >
           <Image
             src={locale === "vi" ? "/vietnam.png" : "/en.png"}

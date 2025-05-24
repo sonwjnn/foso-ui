@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { ChevronDown } from "lucide-react";
+import LanguageSwitcher from "./language-switcher";
 
 export function Footer() {
   return (
@@ -125,24 +126,7 @@ export function Footer() {
             </div>
             <div className="mt-6">
               <div className="flex items-center justify-end">
-                <div className="relative">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="hidden md:flex w-fit hover:bg-transparent"
-                  >
-                    <Image
-                      src="/vietnam.png"
-                      alt="vietnam"
-                      className="size-[36px] object-cover"
-                      width={0}
-                      height={0}
-                      sizes="100vw"
-                    />
-                    VI
-                    <ChevronDown className="w-4 h-4" />
-                  </Button>
-                </div>
+                <LanguageSwitcher /> <ChevronDown className="w-4 h-4 ml-2" />
               </div>
             </div>
           </div>
