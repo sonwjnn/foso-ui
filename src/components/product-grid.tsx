@@ -121,7 +121,7 @@ export function ProductGrid({ products }: { products: Product[] }) {
     setPage(1);
     setHasMore(true);
     setVisibleProducts([]);
-  }, [sortedProducts.length]);
+  }, [sortedProducts]);
 
   useEffect(() => {
     loadMoreProducts();
