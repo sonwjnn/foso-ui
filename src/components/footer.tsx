@@ -125,8 +125,8 @@ export function Footer() {
               </button>
             </div>
             <div className="mt-6">
-              <div className="flex items-center justify-end">
-                <LanguageSwitcher /> <ChevronDown className="w-4 h-4 ml-2" />
+              <div className="flex justify-end">
+                <LanguageSwitcher />
               </div>
             </div>
           </div>

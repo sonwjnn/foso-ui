@@ -10,21 +10,29 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { ChevronDown } from "lucide-react";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { Locale } from "@/i18n/config";
 
 export default function LanguageSwitcher() {
-  const locale = useLocale();
+  const [open, setOpen] = useState(false);
+  const locale = useLocale() as Locale;
 
-  const changeLanguage = (newLocale: "vi" | "en") => {
+  const changeLanguage = (newLocale: Locale) => {
+    if (locale === newLocale) return;
+
     setUserLocale(newLocale);
+    setOpen(false);
   };
 
   return (
-    <DropdownMenu>
+    <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
           size="icon"
-          className="flex w-fit hover:bg-transparent focus-visible:border-0 focus-visible:ring-0"
+          className="flex items-center w-fit hover:bg-transparent focus-visible:border-0 focus-visible:ring-0"
         >
           <Image
             src={locale === "vi" ? "/vietnam.png" : "/en.png"}
@@ -34,6 +42,12 @@ export default function LanguageSwitcher() {
             height={36}
           />
           <p className="hidden md:block">{locale === "vi" ? "VI" : "EN"}</p>
+          <ChevronDown
+            className={cn(
+              "size-4 transition-transform mb-1",
+              open && "rotate-180"
+            )}
+          />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

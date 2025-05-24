@@ -38,11 +38,9 @@ export function ProductCard({
       </div>
       <div className="py-4 px-6 gap-y-4 flex pt-0 flex-col">
         <ProductBadge />
-        <Link href={`/product/${id}`}>
-          <h3 className="font-semibold text-base text-[#1C252E] line-clamp-2 h-12">
-            {name}
-          </h3>
-        </Link>
+        <h3 className="font-semibold text-base text-[#1C252E] line-clamp-2 h-12">
+          {name}
+        </h3>
         <div className="flex flex-col gap-2">
           <span className="text-[#B71D18] font-semibold text-xl">
             {price.toLocaleString()} đ
