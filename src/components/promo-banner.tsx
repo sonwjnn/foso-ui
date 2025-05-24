@@ -6,7 +6,7 @@ export function PromoBanner() {
 
   return (
     <div className="w-full overflow-hidden">
-      <div className="container relative mx-auto flex flex-col md:flex-row items-center justify-between">
+      <div className="max-w-[1440px]  relative mx-auto flex flex-col md:flex-row items-center justify-between">
         <Image
           src={locale === "vi" ? "/banner_vi.png" : "/banner_en.png"}
           alt="banner"

@@ -1,7 +1,5 @@
 "use client";
 
-import * as React from "react";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
@@ -16,124 +14,60 @@ import {
 import { ProductCard } from "./product-card";
 import Image from "next/image";
 import { useLocalizedProducts } from "@/services/product-localization";
-
-interface CategoryType {
-  id: string;
-  nameKey: string;
-  icon: string;
-  hasSubcategories: boolean;
-}
-
-const categories: CategoryType[] = [
-  {
-    id: "oil",
-    nameKey: "oil_filter",
-    icon: "/categories/cate_1.png",
-    hasSubcategories: true,
-  },
-  {
-    id: "air",
-    nameKey: "air_filter",
-    icon: "/categories/cate_2.png",
-    hasSubcategories: true,
-  },
-  {
-    id: "fuel",
-    nameKey: "fuel_filter",
-    icon: "/categories/cate_3.png",
-    hasSubcategories: true,
-  },
-  {
-    id: "cabin1",
-    nameKey: "cabin_filter",
-    icon: "/categories/cate_4.png",
-    hasSubcategories: true,
-  },
-  {
-    id: "air2",
-    nameKey: "air_filter",
-    icon: "/categories/cate_5.png",
-    hasSubcategories: true,
-  },
-  {
-    id: "cabin2",
-    nameKey: "cabin_filter",
-    icon: "/categories/cate_6.png",
-    hasSubcategories: true,
-  },
-  {
-    id: "fuel2",
-    nameKey: "fuel_filter",
-    icon: "/categories/cate_7.png",
-    hasSubcategories: true,
-  },
-  {
-    id: "air3",
-    nameKey: "air_filter",
-    icon: "/categories/cate_8.png",
-    hasSubcategories: true,
-  },
-];
-
-interface SubcategoryType {
-  id: string;
-  nameKey: string;
-  image: string;
-}
-
-const subcategories: SubcategoryType[] = [
-  { id: "sub1", nameKey: "air_filter", image: "/categories/sub_cate_1.png" },
-  { id: "sub2", nameKey: "air_filter", image: "/categories/sub_cate_2.png" },
-  { id: "sub3", nameKey: "air_filter", image: "/categories/sub_cate_1.png" },
-  { id: "sub4", nameKey: "air_filter", image: "/categories/sub_cate_2.png" },
-  { id: "sub5", nameKey: "air_filter", image: "/categories/sub_cate_1.png" },
-  { id: "sub6", nameKey: "air_filter", image: "/categories/sub_cate_2.png" },
-];
+import { Product } from "@/data/products";
+import { useMemo, useState } from "react";
+import { categories, subcategories } from "@/data/categories";
 
 export function NavigationCategory() {
   const t = useTranslations("navigation_category");
   const { products } = useLocalizedProducts();
-  const [activeCategory, setActiveCategory] = React.useState<string | null>(
-    null
-  );
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  const filteredProducts = useMemo(() => {
+    if (!activeCategory) {
+      return products;
+    }
+    return products.filter((product) => product.category === activeCategory);
+  }, [products, activeCategory]);
 
   return (
     <HoverCard openDelay={100} closeDelay={100}>
       <HoverCardTrigger asChild>
         <Button className="bg-[#0155C6] hover:bg-[#0155C6]/80 text-white rounded-md text-base font-bold">
           <MenuIcon size={18} className="text-white" />
-          {t("product_categories")}
+          Product categories
           <ChevronDown size={16} className="text-white" />
         </Button>
       </HoverCardTrigger>
-      <HoverCardContent className="max-w-[1376px] w-full shadow-lg p-0">
+      <HoverCardContent
+        className="max-w-[1376px] w-full shadow-lg p-0"
+        align="start"
+        sideOffset={0}
+      >
         <div className="flex">
           {/* Left sidebar - categories */}
           <div className="w-[264px] shrink-0 bg-white border-r border-gray-200">
             {categories.map((category) => (
-              <Link
-                href={`/category/${category.id}`}
+              <button
                 key={category.id}
                 className={cn(
-                  "flex items-center gap-2 p-4 hover:bg-[#E6F1FF] transition-colors",
+                  "flex items-center gap-2 p-4 w-full hover:bg-[#E6F1FF] transition-colors",
                   category.id === activeCategory && "bg-[#E6F1FF]"
                 )}
                 onMouseEnter={() => setActiveCategory(category.id)}
               >
                 <Image
-                  src={category.icon}
-                  alt={t(`categories.${category.nameKey}`)}
+                  src={category.image}
+                  alt={category.name}
                   width={24}
                   height={24}
                   className="object-contain"
                 />
                 <span className="text-sm font-medium flex-1">
-                  {t(`categories.${category.nameKey}`)}
+                  {category.name}
                 </span>
-                {category.hasSubcategories && (
-                  <ChevronRight size={16} className="text-gray-400" />
-                )}
-              </Link>
+                <ChevronRight size={16} className="text-gray-400" />
+              </button>
             ))}
           </div>
 
@@ -148,29 +82,29 @@ export function NavigationCategory() {
                   <div className="w-12 h-12 flex items-center justify-center">
                     <Image
                       src={subcategory.image}
-                      alt={t(`subcategories.${subcategory.nameKey}`)}
+                      alt={subcategory.name}
                       width={40}
                       height={40}
                       className="object-contain"
                     />
                   </div>
                   <span className="text-sm font-medium">
-                    {t(`subcategories.${subcategory.nameKey}`)}
+                    {subcategory.name}
                   </span>
                 </button>
               ))}
             </div>
             <div className="flex items-center justify-between">
               <h3 className="text-[#1C252E] font-semibold text-2xl">
-                {t("bestselling_products")}
+                Best selling products
               </h3>
               <button className="text-[#025FCA] hover:underline flex gap-x-2 items-center font-semibold text-base">
-                {t("view_all")}{" "}
+                View more
                 <ChevronsRight className="size-5 text-[#025FCA]" />
               </button>
             </div>
             <div className="w-full grid grid-cols-5 overflow-x-auto  gap-3">
-              {products.slice(0, 5).map((product) => (
+              {filteredProducts.slice(0, 5).map((product) => (
                 <ProductCard
                   key={product.id}
                   id={product.id}

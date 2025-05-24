@@ -45,7 +45,7 @@ export function Header() {
           background: `linear-gradient(270deg, #0D57C6 0%, #37CFFF 50.39%, #0F5ED6 100%)`,
         }}
       >
-        <div className="container mx-auto flex flex-wrap gap-y-2 md:gap-y-0 justify-center md:justify-between items-center px-4 p-1">
+        <div className="max-w-[1440px]  mx-auto flex flex-wrap gap-y-2 md:gap-y-0 justify-center md:justify-between items-center px-4 p-1">
           <div className="text-sm font-normal flex items-center gap-2">
             <Image
               src="/coupon.png"
@@ -85,7 +85,7 @@ export function Header() {
           </div>
         </div>
       </div>
-      <div className="container mx-auto p-4">
+      <div className="max-w-[1440px]  mx-auto p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <MobileNav />

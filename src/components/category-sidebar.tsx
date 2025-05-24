@@ -160,7 +160,7 @@ export function CategorySidebar() {
     });
   };
 
-  const categories: Category[] = [
+  const categories = [
     {
       id: "oil-filter",
       name: t("filter_categories.oil_filter"),

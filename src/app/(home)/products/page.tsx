@@ -26,7 +26,7 @@ export default function Home() {
       <Header />
 
       <main className="flex-1">
-        <div className="container mx-auto px-4 py-6">
+        <div className="max-w-[1440px]  mx-auto px-4 py-6">
           <div className="mb-6">
             <BreadcrumbHome items={items} />
           </div>

@@ -9,7 +9,7 @@ export function Footer() {
       className="bg-[#fefefe] py-6 bg-cover min-h-[464px] flex items-center"
       style={{ backgroundImage: "url('/footer_bg.jpg')" }}
     >
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1440px]  mx-auto px-4">
         <div className="flex justify-between flex-wrap lg:flex-nowrap items-start gap-8">
           <div className="">
             <h3 className="text-[#013065] font-semibold text-2xl mb-12">
